@@ -1,0 +1,218 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 0,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    "modules-left": [
+        "custom/appmenu",
+        "niri/workspaces"
+    ],
+    "modules-center": [
+        // "niri/window"
+        "clock"
+    ],
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "backlight",
+        "bluetooth",
+        "network",
+        "battery",
+        "cpu",
+        "tray",
+        "group/power",
+    ],
+
+    "custom/appmenu": {
+        "format": "Apps",
+        "on-click": "fuzzel",
+        "tooltip-format": "Open application launcher"
+    },
+
+    "niri/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "focused": "",
+            "active": "",
+            "empty": "",
+            "urgent": "",
+            "default": ""
+        }
+    },
+
+    "niri/window": {
+        "format": "{title}",
+        "icon": true,
+        "icon-size": 18,
+        "max-length": 90,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M %a}",
+        "format-alt": "{:%Y-%m-%d %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip-format-activated": "Idle inhibit on",
+        "tooltip-format-deactivated": "Idle inhibit off"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-bluetooth-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 2,
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc}: {volume}%"
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ifname}",
+        "format-linked": " {ifname}",
+        "format-disconnected": "",
+        "format-disabled": " Off",
+        "tooltip-format-wifi": "{essid}\n{ifname} {ipaddr}/{cidr}\nSignal: {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Network disconnected\nClick to edit connections",
+        "tooltip-format-disabled": "Wi-Fi disabled\nClick to edit connections",
+        "on-click": "nm-connection-editor",
+        "on-click-right": "alacritty --class nmtui -T Network -e nmtui"
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "format-off": "",
+        "format-on": "",
+        "format-connected": " {num_connections}",
+        "format-no-controller": "",
+        "tooltip-format": "{controller_alias}",
+        "tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "blueman-manager",
+        "on-click-right": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && bluetoothctl power off || bluetoothctl power on'"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    // "group/hardware": {
+    //     "orientation": "inherit",
+    //     "drawer": {
+    //         "transition-duration": 300,
+    //         "children-class": "hardware-detail",
+    //         "transition-left-to-right": false
+    //     },
+    //     "modules": [
+    //         "cpu"
+    //     ]
+    // },
+
+    "custom/system": {
+        "format": "",
+        "tooltip-format": "Hardware"
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip-format": "Power"
+    },
+
+    "group/power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 220,
+            "children-class": "power-action",
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "custom/power",
+            "custom/power-suspend",
+            "custom/power-shutdown",
+            "custom/power-logout"
+        ]
+    },
+
+    "custom/power-suspend": {
+        "format": "⏾",
+        "on-click": "systemctl suspend",
+        "tooltip-format": "Suspend"
+    },
+
+    "custom/power-shutdown": {
+        "format": "",
+        "on-click": "systemctl poweroff",
+        "tooltip-format": "Shutdown"
+    },
+
+    "custom/power-logout": {
+        "format": "󰍃",
+        "on-click": "niri msg action quit --skip-confirmation",
+        "tooltip-format": "Logout"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "D {percentage_used}%",
+        "path": "/"
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "C {usage}%",
+        "on-click": "gnome-system-monitor"
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": "M {}%"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
+}

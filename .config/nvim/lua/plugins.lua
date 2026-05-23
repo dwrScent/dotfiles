@@ -51,22 +51,44 @@ return require("packer").startup(function(use)
     -- treesitter highlights
     use {
         'nvim-treesitter/nvim-treesitter',
-        lazy = false,
-        build = ':TSUpdate'
-        -- 'nvim-treesitter/nvim-treesitter',
-        -- run = function()
-        --     local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-        --     ts_update()
-        -- end,
-        --
-        -- config = function()
-        --     require("plugin.treesitter")
-        -- end
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+
+        config = function()
+            require("plugin.treesitter")
+        end
     }
 
     -- colorscheme
-    use 'shaunsingh/nord.nvim'
-
+    -- use {
+    --     'shaunsingh/nord.nvim'
+    --     config = function()
+    --         require("plugin.nord")
+    --     end
+    -- }
+    use {
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            require("plugin.rose-pine")
+        end
+    }
+    -- use {
+    --     'cocopon/iceberg.vim',
+    --     config = function()
+    --         require("plugin.iceberg")
+    --     end
+    -- }
+    --
+    -- use {
+    --     "rebelot/kanagawa.nvim",
+    --     config = function()
+    --         require("plugin.kanagawa")
+    --     end
+    -- }
+    --
     -- mason and lsp
     use {
         "williamboman/mason.nvim",
@@ -93,6 +115,18 @@ return require("packer").startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
+
+    use "nvim-lua/plenary.nvim"
+
+    use {
+        "HakonHarnes/img-clip.nvim",
+        cmd = "PasteImage",
+        config = function()
+            require("img_clip").setup({})
+        end,
+    }
+
+    use "github/copilot.vim"
 
 end)
 

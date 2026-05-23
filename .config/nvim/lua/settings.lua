@@ -25,7 +25,7 @@ vim.o.mouse = "a"
 vim.wo.relativenumber = false
 vim.opt.nu = true
 
--- 剪贴板
+-- 剪贴板 for ssh
 -- 1. 定义一个专门使用 OSC 52 的复制函数
 local function copy_osc52(lines, regtype)
     require('vim.ui.clipboard.osc52').copy('+')(lines, regtype)
