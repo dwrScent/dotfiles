@@ -99,10 +99,10 @@
         "format-disabled": " Off",
         "tooltip-format-wifi": "{essid}\n{ifname} {ipaddr}/{cidr}\nSignal: {signalStrength}%",
         "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr}",
-        "tooltip-format-disconnected": "Network disconnected\nClick to edit connections",
-        "tooltip-format-disabled": "Wi-Fi disabled\nClick to edit connections",
-        "on-click": "nm-connection-editor",
-        "on-click-right": "alacritty --class nmtui -T Network -e nmtui"
+        "tooltip-format-disconnected": "Network disconnected\nClick to connect",
+        "tooltip-format-disabled": "Wi-Fi disabled\nClick to connect",
+        "on-click": "alacritty --class nmtui -T Network -e nmtui-connect",
+        "on-click-right": "nm-connection-editor"
     },
 
     "bluetooth": {
