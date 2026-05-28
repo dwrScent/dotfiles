@@ -2,6 +2,7 @@
 alias c='clear'
 alias h='history'
 alias ..='cd ..'
+alias e='exit'
 
 # Listing improvements
 alias ls='ls --color=auto'

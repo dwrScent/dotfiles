@@ -5,11 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/.zsh/
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 #历史纪录条目数量
 export HISTSIZE=10000
@@ -26,6 +24,7 @@ setopt HIST_IGNORE_DUPS
 
 alias c='clear'
 alias la='ls -a'
+alias e='exit'
 
 ZSH_THEME="powerlevel10k"
 
@@ -35,20 +34,8 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-export http_proxy=http://127.0.0.1:7897
-export https_proxy=http://127.0.0.1:7897
+# export http_proxy=http://127.0.0.1:7897
+# export https_proxy=http://127.0.0.1:7897
 
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-# [[ -f /home/tumeScent/.dart-cli-completion/zsh-config.zsh ]] && . /home/tumeScent/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-
-# FZF plugin
-export PATH="$HOME/.zsh/fzf-zsh-plugin/bin:$PATH"
 source <(fzf --zsh)
 export FZF_COMPLETION_TRIGGER='\'
-
-# bind keys
-bindkey -r '^I'
-bindkey '^I' autosuggest-accept
