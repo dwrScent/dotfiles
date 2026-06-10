@@ -1,40 +1,39 @@
 [general]
-import = [
-"~/.config/alacritty/alacritty-theme/themes/dracula-soft.toml"
-]
+# 导入主题
+import = [ "/home/tumeScent/.config/alacritty/themes/themes/rose_pine.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/ashes_dark.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/carbonfox.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/pastel_dark.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/afterglow.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/material_theme.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/sonokai.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/dracula_plus.toml" ]
+# import = [ "/home/tumeScent/.config/alacritty/themes/themes/tokyo_night_enhanced.toml" ]
+
+[font]
+size = 15.0
+normal = { family = "JetBrainsMono Nerd Font", style = "Medium" }
+
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+
+[window]
+dimensions = { columns = 147, lines = 38 }
+decorations = "none"
+opacity = 0.88
+# opacity = 0.6 # for pastel_dark
+blur = true
+# padding = { x = 17, y = 17}
+
+# 快捷键绑定
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control|Shift"
+action = "SpawnNewInstance"
 
 [env]
 TERM = "xterm-256color"
 
-[window]
-padding.x = 10
-padding.y = 10
-option_as_alt = "Both"
-
-# dimensions = { columns = 100, lines = 28 }
-dimensions = { columns = 150, lines = 41 }
-position = { x = 0, y = 0 }
-
-decorations = "Buttonless"
-# decorations = "transparent"
-
-# opacit = 0.8
-# blur = true
-
-[colors]
-[colors.primary]
-# foreground = "#000408"
-# background = "#0c011c"  # purple
-# background = "#0b121a"  # dark blue
-
-[font]
-normal.family = "JetBrainsMono NF"
-# normal.family = "Firacode Nerd Font"
-# normal.style = "Regular"
-offset = { x = 1, y = 2 }
-size = 14
-
-[keyboard]
-bindings = [
-{ key = "N", mods = "Super", action = "CreateNewWindow" },
-]
+[terminal]
+osc52 = "CopyPaste"
