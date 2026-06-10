@@ -42,4 +42,6 @@ keymap('n', ']d', vim.diagnostic.goto_next, {})
 -- keymap('n', '<leader>ca', vim.lsp.buf.code_action, {})
 keymap('n', '<leader>rn', vim.lsp.buf.rename, {})
 
-
+keymap("n", "<leader>cf", function()
+  require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format current buffer" })
